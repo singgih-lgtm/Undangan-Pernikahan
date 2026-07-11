@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Undangan Pernikahan - Singgih & Arizka</title>
+    <!-- Google Fonts for elegant typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f7f5f0;
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            width: 100%;
+        }
+
+        /* Cover Overlay */
+        #cover-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url('Background undangan Cover.png') no-repeat center center;
+            background-size: cover;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+        }
+
+        #cover-overlay.fade-out {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cover-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .cover-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.5rem;
+            margin: 10px 0 20px;
+            color: #dfba6b;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.2;
+        }
+
+        /* Single Cover Image - Tanpa Bingkai & Diperbesar */
+        .cover-image-wrapper {
+            margin: 15px 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .single-cover-img {
+            width: 90%; 
+            max-width: 420px; 
+            height: auto;
+            object-fit: contain;
+            border-radius: 0;
+            border: none;
+            background-color: transparent;
+            box-shadow: none; 
+            filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.4));
+        }
+
+        .btn-open {
+            background-color: #dfba6b;
+            color: #1a1a1a;
+            border: none;
+            padding: 12px 28px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn-open:hover {
+            background-color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Main Content Container (Simulasi tampilan mobile di Desktop) */
+        .main-container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        section {
+            padding: 50px 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #8d7034;
+            margin-bottom: 20px;
+        }
+
+        .script-font {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #dfba6b;
+            line-height: 1.2;
+        }
+
+        /* Section Mempelai */
+        .mempelai-intro {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .profile-card {
+            margin: 30px 0;
+        }
+
+        .profile-frame {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            border: 4px solid #dfba6b;
+            padding: 5px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .profile-parents {
+            font-size: 0.85rem;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        .ampersand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #dfba6b;
+            margin: 10px 0;
+        }
+
+        /* Section Acara */
+        #acara {
+            background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('Masjid Suciati, Background untuk Page Lokasi.jpg') no-repeat center center;
+            background-size: cover;
+            background-attachment: scroll;
+        }
+
+        .event-box {
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid #eadecc;
+            border-radius: 15px;
+            padding: 25px 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(141, 112, 52, 0.05);
+        }
+
+        .event-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #8d7034;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .event-details {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .event-details p {
+            margin-bottom: 10px;
+        }
+
+        .event-details strong {
+            color: #1a1a1a;
+        }
+
+        /* Countdown Grid */
+        .countdown-container {
+            background-color: #8d7034;
+            color: white;
+            border-radius: 12px;
+            padding: 20px 10px;
+            margin-top: 30px;
+        }
+
+        .countdown-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .countdown-grid {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .countdown-item {
+            flex: 1;
+        }
+
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: bold;
+            display: block;
+            color: #dfba6b;
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        /* Form RSVP & Ucapan */
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 15px;
+            border-radius: 12px;
+            margin: 20px auto;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(141, 112, 52, 0.05);
+            text-align: left;
+            border: 1px solid #eadecc;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+            font-size: 0.85rem;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #eadecc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #faf9f6;
+            font-size: 16px; /* Mencegah auto-zoom di iPhone */
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #dfba6b;
+            background-color: #fff;
+        }
+        
+        .btn-submit {
+            background-color: #dfba6b;
+            color: #1a1a1a;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
+        }
+
+        .btn-submit:hover {
+            background-color: #8d7034;
+            color: #fff;
+        }
+
+        .comments-list {
+            margin-top: 20px;
+            max-height: 250px;
+            overflow-y: auto;
+            border-top: 1px solid #eadecc;
+            padding-top: 15px;
+        }
+        
+        .comment-item {
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #eadecc;
+            padding-bottom: 15px;
+        }
+        
+        .comment-item h4 { margin: 0; color: #8d7034; font-family: 'Playfair Display', serif; font-size: 1rem; }
+        .comment-item p { margin: 5px 0 0 0; font-size: 0.85rem; color: #555; line-height: 1.5; }
+
+        /* Penutup */
+        .closing-img {
+            width: 100%;
+            height: auto; 
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 3px solid #eadecc;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .closing-text {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Music Floating Control */
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background-color: #8d7034;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 999;
+            border: 2px solid #dfba6b;
+        }
+
+        .music-icon {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
+
+        .rotating {
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* =========================================
+           KODE KHUSUS UNTUK TAMPILAN HP (RESPONSIVE)
+           ========================================= */
+        @media(max-width: 480px) {
+            section {
+                padding: 40px 15px; /* Mengurangi ruang kosong di kiri-kanan HP */
+            }
+
+            .cover-names {
+                font-size: 3rem; /* Menyesuaikan teks judul agar tidak menumpuk/turun baris terlalu banyak */
+            }
+
+            .single-cover-img {
+                width: 95%; /* Membuat gambar lebih optimal di layar HP */
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .script-font {
+                font-size: 2.3rem;
+            }
+
+            .profile-frame {
+                width: 140px;
+                height: 140px;
+            }
+
+            .profile-name {
+                font-size: 1.3rem;
+            }
+
+            .event-box {
+                padding: 20px 15px;
+            }
+
+            .countdown-number {
+                font-size: 1.3rem;
+            }
+            
+            .countdown-label {
+                font-size: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio Element -->
+    <audio id="bg-music" loop>
+        <source src="Westlife_Beautiful_In_White.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Cover Overlay Screen -->
+    <div id="cover-overlay">
+        <p class="cover-title">Undangan Pernikahan</p>
+        
+        <!-- Gambar Cover Tunggal Tanpa Bingkai -->
+        <div class="cover-image-wrapper">
+            <img src="Cover Singgih Arizka.png" alt="Cover Singgih dan Arizka" class="single-cover-img">
+        </div>
+
+        <h1 class="cover-names">Singgih & Arizka</h1>
+        <p style="font-size: 0.9rem; margin-bottom: 20px; letter-spacing: 1px;">Selasa, 18 Agustus 2026</p>
+        
+        <button class="btn-open" onclick="openInvitation()">Buka Undangan</button>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-container">
+        
+        <!-- Section Pembuka & Mempelai -->
+        <section id="mempelai">
+            <h2 class="script-font">Walimatul 'Ursy</h2>
+            <p class="mempelai-intro">
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."<br><strong>(QS. Ar-Rum: 21)</strong>
+            </p>
+            
+            <p style="font-size: 0.85rem; margin-bottom: 20px; color: #444; line-height: 1.6;">
+                Assalamu'alaikum Warahmatullahi Wabarakatuh.<br>
+                Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i ke acara pernikahan kami:
+            </p>
+
+            <!-- Profil Mempelai Pria -->
+            <div class="profile-card">
+                <div class="profile-frame">
+                    <img src="Photo Profil Singgih.jpeg" alt="Singgih">
+                </div>
+                <h3 class="profile-name">Singgih Asri Wibowo</h3>
+                <p class="profile-parents">Putra dari Bapak K. Suwarno (Alm)<br>& Ibu Rosikin (Almh)</p>
+            </div>
+
+            <div class="ampersand">&</div>
+
+            <!-- Profil Mempelai Wanita -->
+            <div class="profile-card">
+                <div class="profile-frame">
+                    <img src="Photo Profil Arizka.jpeg" alt="Arizka">
+                </div>
+                <h3 class="profile-name">Arizka</h3>
+                <p class="profile-parents">Putri dari Bapak Suramin (Alm)<br>& Ibu Nanik Windarti</p>
+            </div>
+        </section>
+
+        <!-- Section Acara & Lokasi -->
+        <section id="acara">
+            <h2>Waktu & Tempat</h2>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">
+                Insya Allah acara akan diselenggarakan pada:
+            </p>
+
+            <!-- Akad Nikah -->
+            <div class="event-box">
+                <h3>Akad Nikah</h3>
+                <div class="event-details">
+                    <p><strong>Hari/Tanggal:</strong><br>Selasa, 18 Agustus 2026</p>
+                    <p><strong>Waktu:</strong><br>08.00 WIB - Selesai</p>
+                </div>
+            </div>
+
+            <!-- Resepsi -->
+            <div class="event-box">
+                <h3>Resepsi Pernikahan</h3>
+                <div class="event-details">
+                    <p><strong>Hari/Tanggal:</strong><br>Selasa, 18 Agustus 2026</p>
+                    <p><strong>Waktu:</strong><br>10.00 WIB - Selesai</p>
+                    <p style="margin-top: 15px;"><strong>Lokasi Acara:</strong><br><strong>Masjid Suciati</strong><br>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Masjid+Suciati+Saliman" target="_blank" style="color: #8d7034; text-decoration: none; font-weight: bold;">[Lihat di Google Maps]</a></p>
+                </div>
+            </div>
+
+            <!-- Countdown Box -->
+            <div class="countdown-container">
+                <p class="countdown-title">Menuju Hari Bahagia</p>
+                <div class="countdown-grid">
+                    <div class="countdown-item">
+                        <span id="days" class="countdown-number">00</span>
+                        <span class="countdown-label">Hari</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours" class="countdown-number">00</span>
+                        <span class="countdown-label">Jam</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes" class="countdown-number">00</span>
+                        <span class="countdown-label">Menit</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds" class="countdown-number">00</span>
+                        <span class="countdown-label">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section RSVP & Ucapan -->
+        <section id="rsvp-ucapan" style="background-color: #faf9f6;">
+            <h2>Konfirmasi Kehadiran</h2>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">
+                Bantu kami mempersiapkan acara dengan mengonfirmasi kehadiran Anda di bawah ini.
+            </p>
+            
+            <div class="form-container">
+                <form id="rsvpForm">
+                    <div class="form-group">
+                        <label>Nama Anda:</label>
+                        <input type="text" id="namaRSVP" placeholder="Isi nama lengkap" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah Tamu:</label>
+                        <select id="jumlahTamu">
+                            <option value="1">1 Orang</option>
+                            <option value="2">2 Orang</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Kehadiran:</label>
+                        <select id="kehadiran">
+                            <option value="Hadir">Ya, Saya akan Hadir</option>
+                            <option value="Tidak Hadir">Mohon Maaf, Tidak Bisa Hadir</option>
+                        </select>
+                    </div>
+                    <!-- GANTI NOMOR WA DI BAWAH INI DENGAN NOMOR ANDA -->
+                    <button type="button" class="btn-submit" onclick="kirimRSVP('628123456789')">Kirim Konfirmasi</button>
+                </form>
+            </div>
+
+            <h2 style="margin-top: 50px;">Buku Tamu</h2>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">
+                Tinggalkan doa restu dan ucapan manis untuk kami berdua.
+            </p>
+            
+            <div class="form-container">
+                <form id="commentForm">
+                    <div class="form-group">
+                        <label>Nama:</label>
+                        <input type="text" id="namaKomentar" placeholder="Nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ucapan & Doa:</label>
+                        <textarea id="isiKomentar" rows="3" placeholder="Tulis ucapan bahagia..." required></textarea>
+                    </div>
+                    <button type="button" class="btn-submit" onclick="tambahKomentar()">Kirim Ucapan</button>
+                </form>
+                
+                <!-- Tempat komentar muncul -->
+                <div class="comments-list" id="daftarKomentar"></div>
+            </div>
+        </section>
+
+        <!-- Section Penutup & Foto Bersama -->
+        <section id="penutup" style="background-color: #ffffff;">
+            <h2>Ungkapan Terima Kasih</h2>
+            
+            <img src="Photo Bersama untuk di bagian akhir.jpeg" alt="Foto Bersama" class="closing-img">
+            
+            <p class="closing-text">
+                Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai. Kami sangat menantikan kehadiran Anda di hari bahagia kami.<br><br>
+                Wassalamu'alaikum Warahmatullahi Wabarakatuh.<br><br>
+                <span class="script-font" style="font-size: 2.2rem; display: block; margin-bottom: 5px;">Kami yang berbahagia,</span>
+                <strong>Singgih & Arizka</strong>
+            </p>
+        </section>
+
+    </div>
+
+    <!-- Floating Music Control Button -->
+    <div id="music-control" onclick="toggleMusic()" style="display: none;">
+        <svg class="music-icon rotating" id="music-svg" viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+    </div>
+
+    <script>
+        const music = document.getElementById('bg-music');
+        const musicControl = document.getElementById('music-control');
+        const musicSvg = document.getElementById('music-svg');
+
+        function openInvitation() {
+            document.getElementById('cover-overlay').classList.add('fade-out');
+            
+            music.play().then(() => {
+                musicControl.style.display = 'flex';
+            }).catch(error => {
+                console.log("Autoplay dicegah oleh browser, memunculkan tombol musik.");
+                musicControl.style.display = 'flex';
+                musicSvg.classList.remove('rotating');
+            });
+            
+            document.body.style.overflowY = 'auto';
+        }
+
+        document.body.style.overflowY = 'hidden';
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicSvg.classList.add('rotating');
+            } else {
+                music.pause();
+                musicSvg.classList.remove('rotating');
+            }
+        }
+
+        const targetDate = new Date("August 18, 2026 08:00:00").getTime();
+
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+            }
+        }, 1000);
+
+        function kirimRSVP(nomorWA) {
+            let nama = document.getElementById('namaRSVP').value;
+            let jumlah = document.getElementById('jumlahTamu').value;
+            let kehadiran = document.getElementById('kehadiran').value;
+            
+            if (!nama) {
+                alert("Mohon isi nama Anda terlebih dahulu.");
+                return;
+            }
+            
+            let teksTamu = kehadiran === 'Hadir' ? `bersama ${jumlah} orang` : '';
+            let pesan = `Halo Singgih & Arizka,%0A%0ASaya *${nama}* ingin mengkonfirmasi bahwa saya *${kehadiran}* pada acara pernikahan kalian ${teksTamu}.%0A%0ATerima kasih.`;
+            
+            window.open(`https://wa.me/${nomorWA}?text=${pesan}`, '_blank');
+        }
+
+        function muatKomentar() {
+            let list = JSON.parse(localStorage.getItem('komenNikahSinggihArizka')) || [];
+            let wadah = document.getElementById('daftarKomentar');
+            
+            if (list.length === 0) {
+                wadah.innerHTML = '<p style="text-align:center; color:#999; font-size:0.85rem;">Belum ada ucapan. Jadilah yang pertama!</p>';
+            } else {
+                wadah.innerHTML = '';
+                list.forEach(k => {
+                    wadah.innerHTML += `
+                    <div class="comment-item">
+                        <h4>${k.nama}</h4>
+                        <p>${k.pesan}</p>
+                    </div>`;
+                });
+            }
+        }
+
+        function tambahKomentar() {
+            let nama = document.getElementById('namaKomentar').value;
+            let pesan = document.getElementById('isiKomentar').value;
+            
+            if (!nama || !pesan) {
+                alert("Mohon isi nama dan ucapan doa Anda.");
+                return;
+            }
+
+            let list = JSON.parse(localStorage.getItem('komenNikahSinggihArizka')) || [];
+            list.unshift({nama: nama, pesan: pesan});
+            localStorage.setItem('komenNikahSinggihArizka', JSON.stringify(list));
+            
+            document.getElementById('namaKomentar').value = '';
+            document.getElementById('isiKomentar').value = '';
+            
+            muatKomentar();
+        }
+        
+        muatKomentar();
+    </script>
+</body>
+</html>
